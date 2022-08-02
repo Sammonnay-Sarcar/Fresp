@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fresp/constants/global_variables.dart';
-
+import 'package:fresp/features/auth/screens/bottom_bar.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -24,19 +24,7 @@ class MyApp extends StatelessWidget {
               color: Colors.black,
             )),
       ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Hello.'),
-        ),
-        body: Column(
-          children: [
-            const Center(
-              child: Text('Flutter Demo Home Page'),
-            ),
-            ElevatedButton(onPressed: () {}, child: const Text('Click'))
-          ],
-        ),
-      ),
+      home: const BottomBarScreen()
     );
   }
 }
