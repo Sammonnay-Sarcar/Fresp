@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+// ignore: file_names
 import 'package:flutter/material.dart';
 
 class CustomTextField extends StatelessWidget {
@@ -25,7 +25,7 @@ class CustomTextField extends StatelessWidget {
           color: Colors.black38,
         )),
       ),
-      validator: (val) {},
+      // validator: (val) {},
     );
   }
 }
