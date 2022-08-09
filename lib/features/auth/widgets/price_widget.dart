@@ -8,12 +8,13 @@ class PriceWidget extends StatelessWidget{
   @override 
   Widget build(BuildContext context) {
     final Color color = Utils(context).color;
-    return FittedBox(child:Row(
+    return SizedBox(child:Row(
         children: [
           TextWidget(
             text:'Rs.100', 
-            color: Colors.green, 
-            textSize: 22
+            color: Colors.red, 
+            isTitle: true,
+            textSize: 12
             ),
             
             ],

@@ -17,10 +17,10 @@ class _SaleWidgetState extends State<SaleWidget>{
     Size size = Utils(context).getscreenSize;
 
     return Material(
-      borderRadius: BorderRadius.circular(12),
+      borderRadius: BorderRadius.circular(15),
       color: Theme.of(context).cardColor.withOpacity(0.9),
       child: InkWell(
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(15),
         onTap:() {},
         child:Padding(
           padding: const EdgeInsets.all(8.0),
@@ -30,34 +30,33 @@ class _SaleWidgetState extends State<SaleWidget>{
               children: [
                 Image.network('https://media.istockphoto.com/photos/farm-market-in-the-fall-apples-picture-id1088157488',
                 width:size.width*0.22,
-                height:size.width*0.22,
+                height:size.width*0.15,
                 fit: BoxFit.fill,
                 ),
                 Row(children: [
-                  TextWidget(text:'1kg', color: color, textSize: 22,isTitle: true,),
-                  const SizedBox(height: 6,
+                  TextWidget(text:'1kg', color: color, textSize: 15,isTitle: true,),
+                  const SizedBox(height: 2,
                   ),
                   Row(children: [
                     GestureDetector(
                       onTap: (){
-                        print('print heart button is pressed');
                       },
                       child: Icon(IconlyLight.bag2,size:22,
-                      color: color,)
+                      color: Colors.blue,)
                     ),
                     GestureDetector(
                       onTap: (){},
                       child: Icon(IconlyLight.heart,size:22,
-                      color: color,)
+                      color: Colors.red,)
                     )
                   ],),
                   
                   
                 ],),
                 const PriceWidget(),
-            const SizedBox(height:5),
-            TextWidget(text: 'Apples', color: color, textSize: 18,isTitle:true),
-            const SizedBox(height:5),
+            const SizedBox(height:0.001),
+            TextWidget(text: 'Apples', color: color, textSize: 14,isTitle:true),
+            const SizedBox(height:0.001),
             
               ]
             ),
