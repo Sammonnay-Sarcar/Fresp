@@ -11,10 +11,10 @@ class HomeScreen extends StatefulWidget{
 
 }
 class _HomeScreenState extends State<HomeScreen>{
-  final List<String> _assetImages = [
-    'home1.jpg',
-    'Fresp\assets\home2.jpg',
-    'Fresp\assets\home2.jpg',
+  final List<String> assetImages = [
+    'assets/images/home1.jpg',
+    'assets/images/home2.jpg',
+    'assets/images/home3.jpg',
   ];
 
   @override 
@@ -28,10 +28,10 @@ Size size = Utils(context).getscreenSize;
             height: size.height *0.33,
             child: Swiper(
             itemBuilder: (BuildContext context,int index){
-              return Image.asset(_assetImages[index],fit: BoxFit.fill,);
+              return Image.asset(assetImages[index],fit: BoxFit.fill,);
             },
             autoplay: true,
-            itemCount: _assetImages.length,
+            itemCount: assetImages.length,
             pagination: SwiperPagination(
               alignment: Alignment.bottomCenter,
               builder: DotSwiperPaginationBuilder(color: Colors.white,activeColor: Color.fromARGB(255, 12, 230, 19))

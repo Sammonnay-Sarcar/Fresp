@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:fresp/constants/global_variables.dart';
 import 'package:fresp/features/auth/screens/bottom_bar.dart';
+import 'package:fresp/router.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -24,6 +26,7 @@ class MyApp extends StatelessWidget {
               color: Colors.black,
             )),
       ),
+      onGenerateRoute: (settings)=> generateRoute(settings),
       home: const BottomBarScreen()
     );
   }

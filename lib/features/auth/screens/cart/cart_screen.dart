@@ -1,12 +1,25 @@
+
+
+
 import'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:fresp/features/auth/screens/cart/cart_widget.dart';
 import 'package:fresp/features/auth/widgets/text_widget.dart';
 import 'package:fresp/features/auth/widgets/utils.dart';
-class CartScreen extends StatelessWidget{
+import 'package:fresp/features/auth/screens/address/address_screen.dart';
+class CartScreen extends StatefulWidget{
   const CartScreen({Key? key}) : super(key:key);
 
   @override 
+  State<CartScreen> createState()=> _CartScreenState();
+}
+class _CartScreenState extends State<CartScreen>{
+  void navigateToAddress(){
+    Navigator.pushNamed(context,
+     AddressScreen.routeName,
+     arguments: AddressScreen );
+  }
+  @override
   Widget build(BuildContext context) {
      final Color color =Utils(context).color;
     return  Scaffold(
@@ -49,7 +62,7 @@ class CartScreen extends StatelessWidget{
                   color: Colors.green,
                   borderRadius: BorderRadius.circular(10),
                   child:InkWell(borderRadius:BorderRadius.circular(12),
-                  onTap:(){} ,  
+                  onTap:navigateToAddress,  
                   child:Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: TextWidget(text:'Order Now',textSize: 20,
@@ -63,4 +76,6 @@ class CartScreen extends StatelessWidget{
             )
             
           );}
-  }
+}
+  
+  
