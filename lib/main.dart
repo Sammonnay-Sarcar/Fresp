@@ -2,12 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:fresp/constants/global_variables.dart';
 import 'package:fresp/features/auth/screens/auth_screen.dart';
 import 'package:fresp/router.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const MyApp());
 }
 
