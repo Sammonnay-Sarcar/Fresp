@@ -16,4 +16,4 @@ const loginCredentialSchema = new mongoose.Schema({
     }
 });
 
-exports.loginCredential = mongoose.model('loginCredential', loginCredentialSchema);
+exports.loginCredential = mongoose.model('loginCredential', loginCredentialSchema); 

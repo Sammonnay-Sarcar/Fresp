@@ -1,8 +1,10 @@
 const express = require("express");
 const crypto = require("crypto");
-
+const Razorpay = require('razorpay')
+const app = express();
+const router = express.Router();
 //middleware
-const router = express.router();
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
@@ -16,7 +18,7 @@ const razorpayInstance = new Razorpay({
 	key_secret: razorpay_secret
 });
 let orderRes;
-app.post("/createOrder", (req,res)=>{
+router.post("/createOrder", (req,res)=>{
         const {amount,currency,receipt, notes}  = req.body;  
         razorpayInstance.orders.create({amount, currency, receipt, notes}, 
             (err, order)=>{
@@ -29,7 +31,7 @@ app.post("/createOrder", (req,res)=>{
             }
         )
 });
-app.post("/checkout", (req,res)=>{
+router.post("/checkout", (req,res)=>{
     res.render("index", {order: req.body.order_id, key: razorpay_key})
   })
 //to-do *VERIFY PAYMENT*
@@ -37,4 +39,4 @@ app.post("/checkout", (req,res)=>{
 //     console.log(req.body);
 //   })
 
-module.exports = router;
+module.exports = router; 

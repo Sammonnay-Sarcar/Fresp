@@ -31,14 +31,15 @@ const orderSchema = mongoose.Schema({
         default: Date.now,
     },
     order_id:{
-        type: String
+        type: String,
+        default: ""
     },
-    payment_id:{
-        type: String
-    },
-    receipt:{
-        type: String
-    }
+    // payment_id:{
+    //     type: String
+    // },
+    // receipt:{
+    //     type: String
+    // }
 })
 
 

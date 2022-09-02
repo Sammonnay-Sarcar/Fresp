@@ -19,6 +19,8 @@ app.set("view engine", "ejs");
 const userRoutes = require('./routes/users.route');
 const paymentRoutes = require('./routes/payments.route');
 const orderRoutes = require('./routes/orders.route');
+const categoryRoutes = require('./routes/category.route')
+const productRoutes = require("./routes/product.route");
 
 const api = process.env.API_URL;
 const PORT = process.env.PORT||8080;
@@ -42,9 +44,12 @@ mongoose.connect(process.env.DB_CONNECTION_STRING, {
 app.get("/", (req, res) => {
   res.json({ message: "Welcome to fresp" });
 });
+
 app.use(`${api}/user`, userRoutes);
 app.use(`${api}/order`, orderRoutes);
 app.use(`${api}/payment`, paymentRoutes);
+app.use(`${api}/category`, categoryRoutes);
+app.use(`${api}/product`, productRoutes);
 
 // set port, listen for requests
 app.listen(PORT, () => {
