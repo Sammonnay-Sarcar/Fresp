@@ -8,6 +8,7 @@ import 'package:fresp/features/auth/widgets/text_widget.dart';
 import 'package:fresp/features/auth/widgets/utils.dart';
 import 'package:fresp/features/auth/screens/address/address_screen.dart';
 class CartScreen extends StatefulWidget{
+  static const String routeName = '/cart'; 
   const CartScreen({Key? key}) : super(key:key);
 
   @override 

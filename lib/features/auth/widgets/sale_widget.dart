@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:fresp/features/auth/widgets/price_widget.dart';
 import 'package:fresp/features/auth/widgets/utils.dart';
+import 'package:fresp/features/auth/screens/cart/cart_screen.dart';
 import 'package:fresp/features/auth/widgets/categories_widgets.dart';
 import 'package:fresp/features/auth/widgets/text_widget.dart';
 
@@ -12,7 +13,16 @@ class SaleWidget extends StatefulWidget{
   State<SaleWidget> createState() => _SaleWidgetState();
 }
 class _SaleWidgetState extends State<SaleWidget>{
-  Widget build(BuildContext context) {
+
+    void navigateToCart(){
+    Navigator.pushNamed(context,
+     CartScreen.routeName,
+     arguments: CartScreen );
+    }
+
+
+     @override 
+    Widget build(BuildContext context) {
     final Color color = Utils(context).color;
     Size size = Utils(context).getscreenSize;
 
@@ -40,6 +50,7 @@ class _SaleWidgetState extends State<SaleWidget>{
                   Row(children: [
                     GestureDetector(
                       onTap: (){
+                        navigateToCart();
                       },
                       child: Icon(IconlyLight.bag2,size:22,
                       color: Colors.blue,)

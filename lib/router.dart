@@ -9,13 +9,23 @@ Route<dynamic> generateRoute(RouteSettings routeSettings){
     builder: (_)=> const AddressScreen(
 
     )
+    
   );
+    case CartScreen.routeName:
+  return MaterialPageRoute(
+    settings: routeSettings,
+    builder: (_)=> const CartScreen(
+
+    )
+    
+  );
+  
   default:
     return MaterialPageRoute(
       settings: routeSettings,
       builder: (_)=> const Scaffold(
         body: Center(
-          child: Text('Screen doesn not exist'),
+          child: Text('Screen does not exist'),
         ),
       ),
 
