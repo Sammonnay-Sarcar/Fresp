@@ -1,7 +1,6 @@
 
 import'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
-import 'package:fresp/features/auth/screens/categories.dart';
 import 'package:fresp/features/auth/screens/homescreen.dart';
 import 'package:fresp/features/auth/screens/user.dart';
 import 'package:fresp/features/auth/screens/cart/cart_screen.dart';
@@ -19,7 +18,6 @@ class _BottomBarScreenState extends State<BottomBarScreen>{
   int _selectedindex = 0;
   final List _pages =[
     const HomeScreen(),
-    const CategoriesScreen(),
     const CartScreen(),
     const UserScreen(),
   ];
@@ -43,9 +41,6 @@ class _BottomBarScreenState extends State<BottomBarScreen>{
           BottomNavigationBarItem(
             icon: Icon(IconlyLight.home),
             label: "Home",),
-          BottomNavigationBarItem(
-            icon: Icon(IconlyLight.category),
-            label: "Categories",),
           BottomNavigationBarItem(
             icon: Icon(IconlyLight.buy),
             label: "Cart",),
