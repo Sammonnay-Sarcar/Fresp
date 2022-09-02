@@ -3,6 +3,8 @@ const cors = require("cors");
 const app = express();
 const mongoose = require("mongoose");
 require('dotenv/config');
+const Razorpay = require('razorpay');
+const ejs = require("ejs");
 
 
 
@@ -12,9 +14,13 @@ app.use(cors());
 app.options('*', cors())
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
+app.set("view engine", "ejs");
 //routes
-const usersRoutes = require('./routes/users.route')
+const userRoutes = require('./routes/users.route');
+const paymentRoutes = require('./routes/payments.route');
+const orderRoutes = require('./routes/orders.route');
+const categoryRoutes = require('./routes/category.route')
+const productRoutes = require("./routes/product.route");
 
 const api = process.env.API_URL;
 const PORT = process.env.PORT||8080;
@@ -36,9 +42,14 @@ mongoose.connect(process.env.DB_CONNECTION_STRING, {
 
 // simple route
 app.get("/", (req, res) => {
-  res.json({ message: "Welcome to bezkoder application." });
+  res.json({ message: "Welcome to fresp" });
 });
-app.use(`${api}/user`, usersRoutes);
+
+app.use(`${api}/user`, userRoutes);
+app.use(`${api}/order`, orderRoutes);
+app.use(`${api}/payment`, paymentRoutes);
+app.use(`${api}/category`, categoryRoutes);
+app.use(`${api}/product`, productRoutes);
 
 // set port, listen for requests
 app.listen(PORT, () => {
