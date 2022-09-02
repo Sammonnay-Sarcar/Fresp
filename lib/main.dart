@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fresp/constants/global_variables.dart';
+import 'package:fresp/features/auth/screens/bottom_bar.dart';
 import 'package:fresp/features/auth/screens/auth_screen.dart';
 import 'package:fresp/router.dart';
 
@@ -14,20 +15,29 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Fresp',
-      theme: ThemeData(
-        scaffoldBackgroundColor: GlobalVariables.backgroundColor,
-        colorScheme: const ColorScheme.light(
-          primary: GlobalVariables.secondaryColor,
+        title: 'Fresp',
+        theme: ThemeData(
+          scaffoldBackgroundColor: GlobalVariables.backgroundColor,
+          colorScheme: const ColorScheme.light(
+            primary: GlobalVariables.secondaryColor,
+          ),
+          appBarTheme: const AppBarTheme(
+              elevation: 0,
+              iconTheme: IconThemeData(
+                color: Colors.black,
+              )),
         ),
-        appBarTheme: const AppBarTheme(
-            elevation: 0,
-            iconTheme: IconThemeData(
-              color: Colors.black,
-            )),
-      ),
-      onGenerateRoute: (settings) => generateRoute(settings),
-      home: const AuthScreen(),
-    );
+        onGenerateRoute: (settings) => generateRoute(settings),
+        home: const BottomBarScreen());
+    // appBarTheme:
+    // const AppBarTheme(
+    //     elevation: 0,
+    //     iconTheme: IconThemeData(
+    //       color: Colors.black,
+    //     ));
+    // onGenerateRoute:
+    // (settings) => generateRoute(settings);
+    // home:
+    // const AuthScreen();
   }
 }
