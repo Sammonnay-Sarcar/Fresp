@@ -29,15 +29,5 @@ class MyApp extends StatelessWidget {
         ),
         onGenerateRoute: (settings) => generateRoute(settings),
         home: const BottomBarScreen());
-    // appBarTheme:
-    // const AppBarTheme(
-    //     elevation: 0,
-    //     iconTheme: IconThemeData(
-    //       color: Colors.black,
-    //     ));
-    // onGenerateRoute:
-    // (settings) => generateRoute(settings);
-    // home:
-    // const AuthScreen();
   }
 }

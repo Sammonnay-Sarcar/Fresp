@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fresp/common/widgets/custom_button.dart';
 import 'package:fresp/common/widgets/custom_textField.dart';
 import 'package:fresp/constants/global_variables.dart';
+import 'package:fresp/features/auth/services/auth_service.dart';
 
 enum Auth { signin, signup }
 
@@ -22,12 +23,21 @@ class _AuthScreenState extends State<AuthScreen> {
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _nameController = TextEditingController();
 
+  final AuthService authService = AuthService();
   @override
   void dispose() {
     super.dispose();
     _emailController.dispose();
     _passwordController.dispose();
     _passwordController.dispose();
+  }
+
+  void signUpUser() {
+    authService.signUpUser(
+        context: context,
+        email: _emailController.text,
+        password: _passwordController.text,
+        name: _nameController.text);
   }
 
   @override
