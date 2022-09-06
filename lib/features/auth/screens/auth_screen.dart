@@ -15,6 +15,15 @@ class AuthScreen extends StatefulWidget {
 
 class _AuthScreenState extends State<AuthScreen> {
   Auth _auth = Auth.signup;
+   //Future<bool> isLogged() async {
+    //try {
+     // final user = await{};
+      // ignore: unnecessary_null_comparison
+     // return user != null;
+    //} catch (e) {
+     // return false;
+    //}
+//}
   final _signupFormKey = GlobalKey<FormState>();
   final _signinFormKey = GlobalKey<FormState>();
 
@@ -29,6 +38,7 @@ class _AuthScreenState extends State<AuthScreen> {
     _passwordController.dispose();
     _passwordController.dispose();
   }
+ 
 
   @override
   Widget build(BuildContext context) {

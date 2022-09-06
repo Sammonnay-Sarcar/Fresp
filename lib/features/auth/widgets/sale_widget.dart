@@ -44,7 +44,7 @@ class _SaleWidgetState extends State<SaleWidget>{
                 fit: BoxFit.fill,
                 ),
                 Row(children: [
-                  TextWidget(text:'1kg', color: color, textSize: 15,isTitle: true,),
+                  TextWidget(text:'Apples', color: color, textSize: 20,isTitle: true,),
                   const SizedBox(height: 2,
                   ),
                   Row(children: [
@@ -55,18 +55,14 @@ class _SaleWidgetState extends State<SaleWidget>{
                       child: Icon(IconlyLight.bag2,size:22,
                       color: Colors.blue,)
                     ),
-                    GestureDetector(
-                      onTap: (){},
-                      child: Icon(IconlyLight.heart,size:22,
-                      color: Colors.red,)
-                    )
+                    
                   ],),
                   
                   
                 ],),
                 const PriceWidget(),
             const SizedBox(height:0.001),
-            TextWidget(text: 'Apples', color: color, textSize: 14,isTitle:true),
+            TextWidget(text: '1kg', color: color, textSize: 14,isTitle:true),
             const SizedBox(height:0.001),
             
               ]

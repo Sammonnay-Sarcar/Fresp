@@ -1,9 +1,9 @@
 
-import 'dart:ffi';
+
 
 
 import 'package:flutter/cupertino.dart';
-import 'package:fresp/features/auth/widgets/utils.dart';
+//import 'package:fresp/features/auth/widgets/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fresp/features/auth/widgets/text_widget.dart';
@@ -15,6 +15,17 @@ class CartWidget extends StatefulWidget{
   State<CartWidget> createState() => _CartWidgetState();
 }
 class _CartWidgetState extends State<CartWidget>{
+  int itemCount =0;
+  void incrementCount(){
+    setState(() {
+      itemCount++;
+    });
+  } 
+  void decrementCount(){
+    setState(() {
+      itemCount--;
+    });
+  }
   final _quantityTextController = TextEditingController();
   @override
   void initState(){
@@ -26,7 +37,7 @@ class _CartWidgetState extends State<CartWidget>{
     _quantityTextController.dispose();
   }
   Widget build(BuildContext context) {
-    final Color color =Utils(context).color;
+    //final Color color =Utils(context).color;
     
     return GestureDetector(
         onTap: (){},
@@ -54,7 +65,7 @@ class _CartWidgetState extends State<CartWidget>{
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                      TextWidget(text: 'Text', color: Colors.black , 
+                      TextWidget(text: '  Text', color: Colors.black , 
                       textSize: 20,
                       isTitle: true,
                       ),
@@ -63,7 +74,7 @@ class _CartWidgetState extends State<CartWidget>{
                         width: 150,
                         child: Row(
                           children: [
-                            _quantityController(fct: () {}, icon: CupertinoIcons.minus, color: Colors.red),
+                            _quantityController(fct:() {}, icon: CupertinoIcons.minus, color: Colors.red),
                             Flexible(
                               flex: 1,
                               child: TextField(
@@ -92,11 +103,13 @@ class _CartWidgetState extends State<CartWidget>{
                                     },
                               ),
                             ),
-                            _quantityController(fct: () {}, icon: CupertinoIcons.plus, color: Colors.green),
+                            _quantityController(fct: () => {}, icon: CupertinoIcons.plus, color: Colors.green,),
                            
                           ],
+                          
                         ),
                       ),
+                      
                       
                     ],),
                     const Spacer(),
@@ -108,10 +121,7 @@ class _CartWidgetState extends State<CartWidget>{
                           child: const Icon(CupertinoIcons.cart_badge_minus,color:Colors.red,size:20)
                         ),
                         const SizedBox(height:5,),
-                        InkWell(
-                          onTap: () {},
-                          child: const Icon(CupertinoIcons.heart,color:Colors.black,size:20)
-                        ),
+                        
                         TextWidget(text: 'Rs.100', color: Colors.black, textSize:17,maxLines: 1,)
                         
                         

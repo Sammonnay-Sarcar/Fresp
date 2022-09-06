@@ -11,6 +11,8 @@ class CartScreen extends StatefulWidget{
   static const String routeName = '/cart'; 
   const CartScreen({Key? key}) : super(key:key);
 
+
+
   @override 
   State<CartScreen> createState()=> _CartScreenState();
 }
@@ -26,12 +28,12 @@ class _CartScreenState extends State<CartScreen>{
     return  Scaffold(
       appBar: AppBar(
         elevation:0,
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        title: TextWidget(text:'Cart(2)',color: color,isTitle: true,
+        backgroundColor: Colors.green,
+        title: TextWidget(text:'Cart(2)',color: Color.fromARGB(255, 255, 255, 255),
         textSize: 22,),
         actions: [
         IconButton(onPressed: (){}, icon: Icon(IconlyBroken.delete,),
-        color: color,),
+        color: Colors.white,),
 
       ]),
       body:Column(
@@ -59,8 +61,10 @@ class _CartScreenState extends State<CartScreen>{
             child:Padding(
               padding: const EdgeInsets.symmetric(horizontal:12),
               child: Row(children: [
+                FittedBox( child:TextWidget(text: 'Total Rs.500', color: Colors.black, textSize: 20,isTitle: true,),),
+                const Spacer(),
                 Material(
-                  color: Colors.green,
+                  color: Color.fromARGB(255, 7, 100, 11),
                   borderRadius: BorderRadius.circular(10),
                   child:InkWell(borderRadius:BorderRadius.circular(12),
                   onTap:navigateToAddress,  
@@ -71,8 +75,8 @@ class _CartScreenState extends State<CartScreen>{
                   )
                   
                   )),
-                  const Spacer(),
-                  FittedBox( child:TextWidget(text: 'Total Rs.500', color: Colors.black, textSize: 20,isTitle: true,),),
+                  
+                  
               ],),
             )
             
