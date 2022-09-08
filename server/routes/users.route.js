@@ -8,6 +8,10 @@ const jwt = require('jsonwebtoken');
 
 
 router.post('/', async(req, res)=>{
+    let checkUser =await User.findOne({email: req.body.email});
+    if(checkUser){
+        return res.send("email already exists")
+    }
     let login = new loginCredential({
         email : req.body.email,
         passwordHash: bcrypt.hashSync(req.body.password, 10) 
@@ -15,7 +19,7 @@ router.post('/', async(req, res)=>{
     login = await login.save()
     let user = new User({
         name: req.body.name,
-        phone: req.body.phone,
+        phone: req.body.number,
         email: req.body.email
     });
     user =await  user.save();
@@ -28,7 +32,7 @@ router.put('/:id', async(req, res)=>{
         req.params.id,
         {
             name: req.body.name,
-            phone: req.body.phone,
+            phone: req.body.number,
             email: req.body.email
         },
         {new: true}
@@ -39,7 +43,9 @@ router.put('/:id', async(req, res)=>{
         res.send(user);
 })
 router.post('/login', async (req,res) => {
+    console.log("hello world");
     const user = await loginCredential.findOne({email: req.body.email})
+    console.log(user);
     const secret = process.env.SECRET;
     if(!user) {
         return res.status(400).send('The user not found');
@@ -49,14 +55,14 @@ router.post('/login', async (req,res) => {
         const token = jwt.sign(
             {
                 email: user.email,
-                userId: user.id,
+                userId: user._id,
                 isAdmin: user.isAdmin
             },
             secret,
             {expiresIn : '1d'}
         )
        
-        res.status(200).send({user: user.email , token: token}) 
+        res.status(200).send({email: user.email , token: token}) 
     } else {
        res.status(400).send('password is wrong!');
     }
