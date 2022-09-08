@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fresp/features/auth/screens/cart/product_details.dart';
 import 'package:fresp/features/auth/widgets/text_widget.dart';
-import 'package:fresp/router.dart';
+//import 'package:fresp/router.dart';
 
 class CartWidget extends StatefulWidget{
   const CartWidget({Key? key}) : super(key: key);
