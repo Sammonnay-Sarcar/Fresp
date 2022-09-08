@@ -1,5 +1,6 @@
 
 
+import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:fresp/features/auth/widgets/text_widget.dart';
 import 'package:fresp/features/auth/widgets/utils.dart';
@@ -21,6 +22,8 @@ class _ProductDetailState extends State<ProductDetails>{
   @override 
   Widget build(BuildContext context){
     final Color color =Utils(context).color;
+    Size size = Utils(context).getscreenSize;
+
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60),
@@ -53,12 +56,26 @@ class _ProductDetailState extends State<ProductDetails>{
               padding: EdgeInsets.symmetric(vertical: 20, horizontal : 10,),
               child:  Text('Product Name:', style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),
               ), ),
-              Padding(padding: const EdgeInsets.all(8),
-             child: Image.network('https://media.istockphoto.com/photos/farm-market-in-the-fall-apples-picture-id1088157488',
+              SizedBox(
+          height: size.height * 0.40,
+          child: Swiper(
+            itemBuilder: (BuildContext context, int index) {
+              return Image.network('https://media.istockphoto.com/photos/farm-market-in-the-fall-apples-picture-id1088157488',
              height: 300,
              width:500,
-             fit: BoxFit.fill,),
-                      ),
+             fit: BoxFit.fill);
+            },
+            autoplay: false,
+            itemCount: 4,
+            // ignore: prefer_const_constructors
+            pagination: SwiperPagination(
+                alignment: Alignment.bottomCenter,
+                // ignore: prefer_const_constructors
+                builder: DotSwiperPaginationBuilder(
+                    color: Colors.white,
+                    activeColor: Color.fromARGB(255, 233, 58, 5))),
+          )),
+             
                      
                          Container(
                           color: Color.fromARGB(255, 110, 109, 109),

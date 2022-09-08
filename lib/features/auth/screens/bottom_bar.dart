@@ -4,6 +4,7 @@ import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:fresp/features/auth/screens/homescreen.dart';
 
 import 'package:fresp/features/auth/screens/categories_screen.dart';
+
 import 'package:fresp/features/auth/screens/user_screen.dart';
 import 'package:fresp/features/auth/screens/cart/cart_screen.dart';
 import 'package:fresp/models/user.dart';
@@ -47,12 +48,16 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(IconlyLight.home),
+
             label: "Home",
           ),
           BottomNavigationBarItem(
             icon: Icon(IconlyLight.category),
             label: "Categories",
           ),
+
+
+
           BottomNavigationBarItem(
             icon: Icon(IconlyLight.buy),
             label: "Cart",

@@ -4,6 +4,7 @@
 import'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:fresp/features/auth/screens/cart/cart_widget.dart';
+import 'package:fresp/features/auth/screens/cart/empty_screen.dart';
 import 'package:fresp/features/auth/widgets/text_widget.dart';
 import 'package:fresp/features/auth/widgets/utils.dart';
 import 'package:fresp/features/auth/screens/address/address_screen.dart';
@@ -23,6 +24,11 @@ class _CartScreenState extends State<CartScreen>{
      AddressScreen.routeName,
      arguments: AddressScreen );
   }
+  void navigateToEmptyScreen(){
+    Navigator.pushNamed(context,
+    EmptyCartScreen.routeName,
+    arguments: EmptyCartScreen);
+  }
   @override
   Widget build(BuildContext context) {
      final Color color =Utils(context).color;
@@ -34,7 +40,7 @@ class _CartScreenState extends State<CartScreen>{
         title: TextWidget(text:'Cart(2)',color: Color.fromARGB(255, 255, 255, 255),
         textSize: 22,),
         actions: [
-        IconButton(onPressed: (){}, icon: Icon(IconlyBroken.delete,),
+        IconButton(onPressed: (){navigateToEmptyScreen();}, icon: const Icon(IconlyBroken.delete,),
         color: Colors.white,),
 
       ]),

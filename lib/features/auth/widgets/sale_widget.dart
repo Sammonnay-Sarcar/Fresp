@@ -43,18 +43,18 @@ class _SaleWidgetState extends State<SaleWidget>{
         color: Theme.of(context).cardColor.withOpacity(0.9),
         child: InkWell(
           borderRadius: BorderRadius.circular(15),
-          onTap:() {
+          onTap:() { navigateToProduct();
           },
           
           child:Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(7.0),
             child: Row(children: [
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Image.network('https://media.istockphoto.com/photos/farm-market-in-the-fall-apples-picture-id1088157488',
-                  width:size.width*0.22,
-                  height:size.width*0.15,
+                  width:size.width*0.25,
+                  height:size.width*0.18,
                   fit: BoxFit.fill,
                   ),
                   Row(children: [
@@ -75,9 +75,9 @@ class _SaleWidgetState extends State<SaleWidget>{
                     
                   ],),
                   const PriceWidget(),
-              const SizedBox(height:0.001),
+              const SizedBox(height:0.01),
               TextWidget(text: '1kg', color: color, textSize: 14,isTitle:true),
-              const SizedBox(height:0.001),
+              const SizedBox(height:0.01),
               
                 ]
               ),
