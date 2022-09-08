@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:fresp/features/auth/screens/auth_screen.dart';
 
 import 'package:fresp/features/auth/screens/address/address_screen.dart';
-import 'package:fresp/features/auth/screens/cart/cart_screen.dart'; 
+import 'package:fresp/features/auth/screens/cart/cart_screen.dart';
+import 'package:fresp/features/auth/screens/cart/product_details.dart'; 
 Route<dynamic> generateRoute(RouteSettings routeSettings) {
   switch (routeSettings.name) {
     case AddressScreen.routeName:
@@ -17,6 +18,12 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
   return MaterialPageRoute(
     settings: routeSettings,
     builder: (_)=> const CartScreen(),
+    
+  );
+      case ProductDetails.routename:
+  return MaterialPageRoute(
+    settings: routeSettings,
+    builder: (_)=> const ProductDetails(),
     
   );
     default:

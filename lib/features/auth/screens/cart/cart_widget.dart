@@ -6,24 +6,27 @@ import 'package:flutter/cupertino.dart';
 //import 'package:fresp/features/auth/widgets/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fresp/features/auth/screens/cart/product_details.dart';
 import 'package:fresp/features/auth/widgets/text_widget.dart';
+import 'package:fresp/router.dart';
 
 class CartWidget extends StatefulWidget{
   const CartWidget({Key? key}) : super(key: key);
+  
 
   @override 
   State<CartWidget> createState() => _CartWidgetState();
 }
 class _CartWidgetState extends State<CartWidget>{
-  int itemCount =0;
+  int count =0;
   void incrementCount(){
     setState(() {
-      itemCount++;
+      count++;
     });
   } 
   void decrementCount(){
     setState(() {
-      itemCount--;
+      count--;
     });
   }
   final _quantityTextController = TextEditingController();
@@ -31,6 +34,8 @@ class _CartWidgetState extends State<CartWidget>{
   void initState(){
     _quantityTextController.text='1';
     super.initState();
+    
+  
   }
   @override
   void dispose(){
@@ -40,7 +45,9 @@ class _CartWidgetState extends State<CartWidget>{
     //final Color color =Utils(context).color;
     
     return GestureDetector(
-        onTap: (){},
+        onTap: (){
+          Navigator.pushNamed(context, ProductDetails.routename);
+        },
         child: Row(children: [
           Expanded(
             child: Padding(
@@ -74,7 +81,7 @@ class _CartWidgetState extends State<CartWidget>{
                         width: 150,
                         child: Row(
                           children: [
-                            _quantityController(fct:() {}, icon: CupertinoIcons.minus, color: Colors.red),
+                            _quantityController(fct:() => {count--}, icon: CupertinoIcons.minus, color: Colors.red),
                             Flexible(
                               flex: 1,
                               child: TextField(
@@ -103,7 +110,7 @@ class _CartWidgetState extends State<CartWidget>{
                                     },
                               ),
                             ),
-                            _quantityController(fct: () => {}, icon: CupertinoIcons.plus, color: Colors.green,),
+                            _quantityController(fct: () => {count++}, icon: CupertinoIcons.plus, color: Colors.green,),
                            
                           ],
                           

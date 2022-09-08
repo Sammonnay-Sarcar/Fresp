@@ -17,6 +17,7 @@ class CartScreen extends StatefulWidget{
   State<CartScreen> createState()=> _CartScreenState();
 }
 class _CartScreenState extends State<CartScreen>{
+  
   void navigateToAddress(){
     Navigator.pushNamed(context,
      AddressScreen.routeName,
@@ -25,6 +26,7 @@ class _CartScreenState extends State<CartScreen>{
   @override
   Widget build(BuildContext context) {
      final Color color =Utils(context).color;
+     
     return  Scaffold(
       appBar: AppBar(
         elevation:0,

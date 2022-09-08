@@ -55,5 +55,6 @@ class MyApp extends StatelessWidget {
     // (settings) => generateRoute(settings);
     // home:
     // const AuthScreen();
+    
   }
 }
