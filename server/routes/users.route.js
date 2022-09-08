@@ -5,6 +5,8 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const { json } = require('express');
+const auth = require('../middlewares/auth.middleware');
 
 
 router.post('/', async(req, res)=>{
@@ -27,6 +29,22 @@ router.post('/', async(req, res)=>{
     return res.status(400).send('the user cannot be posted!')
     res.send(user);
 })
+router.get('/', auth , async(req,res)=>{
+    try{
+        
+        const userLoginDetail = await loginCredential.findById(req.user);
+        const user = await User.findOne({'email': userLoginDetail.email});
+        const userObj ={
+            email: user.email,
+            token: req.token
+        }
+        res.json(userObj);
+    }catch(e){
+        res.status(500).json({error : e.message});
+    }
+   
+
+})
 router.put('/:id', async(req, res)=>{
     let user = User.findByIdAndUpdate(
         req.params.id,
@@ -43,9 +61,9 @@ router.put('/:id', async(req, res)=>{
         res.send(user);
 })
 router.post('/login', async (req,res) => {
-    console.log("hello world");
+   
     const user = await loginCredential.findOne({email: req.body.email})
-    console.log(user);
+    
     const secret = process.env.SECRET;
     if(!user) {
         return res.status(400).send('The user not found');
@@ -65,6 +83,23 @@ router.post('/login', async (req,res) => {
         res.status(200).send({email: user.email , token: token}) 
     } else {
        res.status(400).send('password is wrong!');
+    }
+})
+router.post('/tokenIsValid', async (req,res) => {
+    
+    try{
+        const token = req.header('x-auth-token');
+        if(!token)
+            return res.json(false);
+        const isVerified = jwt.verify(token, process.env.SECRET );
+        if(!isVerified)
+            return res.json(false);
+        const user = await loginCredential.findById(isVerified.userId);
+        if(!user)
+            return res.json(false)
+        res.json(true);            
+    }catch(e){
+        res.status(500).json({error : e.message});
     }
 })
 router.post("/address", async(req, res)=>{
@@ -110,7 +145,7 @@ router.delete("/address/:id", async (req,res)=>{
     let user = await User.findOne({email: userEmail.email});
     if(user){
         var index = user.address.indexOf(req.params.id);
-        console.log(index);
+        
         if(index>=0){
             await user.address.splice(index,1);
             user = await user.save();

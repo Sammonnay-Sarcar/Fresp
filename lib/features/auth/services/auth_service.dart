@@ -1,7 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'dart:convert';
-
 import 'package:flutter/cupertino.dart';
 import 'package:fresp/constants/error_handling.dart';
 import 'package:fresp/constants/global_variables.dart';
@@ -70,6 +69,36 @@ class AuthService {
               context, BottomBarScreen.routeName, (route) => false);
         },
       );
+    } catch (e) {
+      showSnackBar(context, e.toString());
+    }
+  }
+
+  //get user data
+  void getUserData(BuildContext context) async {
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      String? token = prefs.getString('x-auth-token');
+      if (token == null) {
+        prefs.setString('x-auth-token', '');
+      }
+      var tokenRes = await http.post(Uri.parse('$uri/api/v1/user/tokenIsValid'),
+          headers: <String, String>{
+            'Content-type': 'application/json; charset=utf-8',
+            'x-auth-token': token!
+          });
+      var response = jsonDecode(tokenRes.body);
+      if (response == true) {
+        //getUserData
+        http.Response userRes = await http.get(Uri.parse('$uri/api/v1/user/'),
+            headers: <String, String>{
+              'Content-type': 'application/json; charset=utf-8',
+              'x-auth-token': token
+            });
+        var userProvider = Provider.of<UserProvider>(context, listen: false);
+
+        userProvider.setUser(userRes.body);
+      }
     } catch (e) {
       showSnackBar(context, e.toString());
     }

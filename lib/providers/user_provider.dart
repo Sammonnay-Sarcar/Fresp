@@ -9,7 +9,7 @@ class UserProvider with ChangeNotifier {
   LoginCredentials _user = LoginCredentials(email: '', token: '');
   LoginCredentials get user => _user;
   void setUser(String user) {
-    print(user);
+    // print(user);
     _user = LoginCredentials.fromJson(user);
     print(_user);
     notifyListeners();
