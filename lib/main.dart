@@ -2,10 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:fresp/constants/global_variables.dart';
 import 'package:fresp/features/auth/screens/bottom_bar.dart';
 import 'package:fresp/features/auth/screens/auth_screen.dart';
+
 //import 'package:fresp/features/auth/screens/homescreen.dart';
+
+import 'package:fresp/providers/user_provider.dart';
+
 import 'package:fresp/router.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
+
   WidgetsFlutterBinding.ensureInitialized();
   final AuthScreen _auth = AuthScreen();
   //final bool isLogged = await AuthScreen.isLogged();
@@ -14,6 +20,13 @@ void main() async {
   //);
 
   runApp( MyApp());
+
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider(
+      create: (context) => UserProvider(),
+    )
+  ], child: const MyApp()));
+
 }
 
 class MyApp extends StatelessWidget {
@@ -44,6 +57,7 @@ class MyApp extends StatelessWidget {
         
       //},
         onGenerateRoute: (settings) => generateRoute(settings),
+
         home: const BottomBarScreen());
     // appBarTheme:
     // const AppBarTheme(
@@ -56,5 +70,8 @@ class MyApp extends StatelessWidget {
     // home:
     // const AuthScreen();
     
+
+        home: const AuthScreen());
+
   }
 }

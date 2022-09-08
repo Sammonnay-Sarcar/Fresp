@@ -21,6 +21,10 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    orderHistory:[{
+        type: mongoose.Schema.Types.ObjectId,
+        ref:'Order',
+    }],
 });
 
 exports.User = mongoose.model('User', userSchema);
