@@ -3,8 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:fresp/features/auth/widgets/utils.dart';
 import 'package:fresp/features/auth/widgets/sale_widget.dart';
 
+import 'package:fresp/providers/user_provider.dart';
+import 'package:provider/provider.dart';
+
+
 
 import 'package:fresp/features/auth/widgets/text_widget.dart';
+
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -45,7 +50,8 @@ class _HomeScreenState extends State<HomeScreen> {
     Size size = Utils(context).getscreenSize;
 
     return Scaffold(
-      appBar: AppBar(
+
+ appBar: AppBar(
         elevation:0,
         title: InkWell(
           borderRadius: BorderRadius.circular(10),
@@ -58,7 +64,11 @@ class _HomeScreenState extends State<HomeScreen> {
         
         backgroundColor: Colors.green,
         ),
+      
+
+     
         body: SingleChildScrollView(child: Column(children: [
+
       SizedBox(
           height: size.height * 0.30,
           child: Swiper(
@@ -125,4 +135,3 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
- 
