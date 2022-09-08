@@ -2,10 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:fresp/constants/global_variables.dart';
 import 'package:fresp/features/auth/screens/bottom_bar.dart';
 import 'package:fresp/features/auth/screens/auth_screen.dart';
+import 'package:fresp/providers/user_provider.dart';
 import 'package:fresp/router.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
-  runApp(const MyApp());
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider(
+      create: (context) => UserProvider(),
+    )
+  ], child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -28,16 +34,6 @@ class MyApp extends StatelessWidget {
               )),
         ),
         onGenerateRoute: (settings) => generateRoute(settings),
-        home: const BottomBarScreen());
-    // appBarTheme:
-    // const AppBarTheme(
-    //     elevation: 0,
-    //     iconTheme: IconThemeData(
-    //       color: Colors.black,
-    //     ));
-    // onGenerateRoute:
-    // (settings) => generateRoute(settings);
-    // home:
-    // const AuthScreen();
+        home: const AuthScreen());
   }
 }
