@@ -53,29 +53,29 @@ class _AddressScreenState extends State<AddressScreen>{
             hintText: 'Full name',
           ),
           
-          const SizedBox(height:10),
+          const SizedBox(height:5),
           CustomTextField(
             controller: contactController,
             hintText: 'Contact Number',
 
           ),
-          const SizedBox(height: 10,),
+          const SizedBox(height: 5,),
           CustomTextField(
             controller: flatBuildingController,
             hintText: 'Flat,House Number,Building',
           ),
-           const SizedBox(height:10),
+           const SizedBox(height:5),
           CustomTextField(
             controller: areaController,
             hintText: 'Area,Street',
           ),
-          const SizedBox(height:10),
+          const SizedBox(height:5),
           CustomTextField(
             controller: pincodeController,
             hintText: 'Pincode',
 
           ),
-           const SizedBox(height:10),
+           const SizedBox(height:5),
           CustomTextField(
             controller: towncityController,
             hintText: 'Town/City',
