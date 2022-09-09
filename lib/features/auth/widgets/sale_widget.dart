@@ -35,59 +35,89 @@ class _SaleWidgetState extends State<SaleWidget>{
 
     return GestureDetector(
         onTap: (){
-          navigateToProduct();
-        },
-      
-        child: Material(
-        borderRadius: BorderRadius.circular(15),
-        color: Theme.of(context).cardColor.withOpacity(0.9),
-        child: InkWell(
-          borderRadius: BorderRadius.circular(15),
-          onTap:() { navigateToProduct();
-          },
           
-          child:Padding(
-            padding: const EdgeInsets.all(7.0),
-            child: Row(children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Image.network('https://media.istockphoto.com/photos/farm-market-in-the-fall-apples-picture-id1088157488',
-                  width:size.width*0.25,
-                  height:size.width*0.18,
-                  fit: BoxFit.fill,
-                  ),
-                  Row(children: [
-                    TextWidget(text:'Apples', color: color, textSize: 20,isTitle: true,),
-                    const SizedBox(height: 2,
-                    ),
-                    Row(children: [
-                      GestureDetector(
-                        onTap: (){
-                          navigateToCart();
-                        },
-                        child: Icon(IconlyLight.bag2,size:22,
-                        color: Colors.blue,)
-                      ),
-                      
-                    ],),
-                    
-                    
-                  ],),
-                  const PriceWidget(),
-              const SizedBox(height:0.01),
-              TextWidget(text: '1kg', color: color, textSize: 14,isTitle:true),
-              const SizedBox(height:0.01),
-              
-                ]
-              ),
-              
-            ]
-            ),
+        },
+        
+        child: Container(
+          margin: const EdgeInsets.all(5),
+          child: Material(
+          borderRadius: BorderRadius.circular(5),
+          color: Color.fromARGB(255, 245, 244, 244),
+          child: InkWell(
+            borderRadius: BorderRadius.circular(5),
+            onTap:() { navigateToProduct();
+            },
             
+            child:Padding(
+              padding: const EdgeInsets.all(7.0), 
+                child: Row(children: [
+                  
+                     Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        
+                          
+                           
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                            
+                               child: Container(
+                                decoration: const BoxDecoration(
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Color(0x54000000),
+                                            spreadRadius: 10,
+                                            blurRadius: 2,
+                                          ),
+                                        ],
+                                      ),
+                                 child: Image.network('https://media.istockphoto.com/photos/farm-market-in-the-fall-apples-picture-id1088157488',
+                                                       width:size.width*0.30,
+                                                       height:size.width*0.18,
+                                                       fit: BoxFit.fill,
+                                                       
+                                                       ),
+                               ),
+                             ),
+                           
+                          
+                          
+                          
+                        
+                        Row(children: [
+                          TextWidget(text:'Apples       ', color: color, textSize: 20,isTitle: true,),
+                          const SizedBox(height: 2,
+                          ),
+                          Row(children: [
+                            GestureDetector(
+                              onTap: (){
+                                navigateToCart();
+                              },
+                              child: Icon(IconlyLight.bag2,size:22,
+                              color: Colors.blue,)
+                            ),
+                            
+                          ],),
+                          
+                          
+                        ],),
+                        const PriceWidget(),
+                    const SizedBox(height:0.1),
+                    TextWidget(text: '1kg', color: color, textSize: 14,isTitle:true),
+                    const SizedBox(height:0.1),
+                    
+                      ]
+                    ),
+                  
+                  
+                ]
+                ),
+              
+              
+            )
           )
-        )
-      ),
+              ),
+        ),
     );
     
 

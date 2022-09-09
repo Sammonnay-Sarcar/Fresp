@@ -3,13 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:fresp/features/auth/widgets/utils.dart';
 import 'package:fresp/features/auth/widgets/sale_widget.dart';
 
-import 'package:fresp/providers/user_provider.dart';
-import 'package:provider/provider.dart';
-
-
 
 import 'package:fresp/features/auth/widgets/text_widget.dart';
-
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -28,8 +23,8 @@ class _HomeScreenState extends State<HomeScreen> {
     _scrollController.animateTo(0,
         duration: const Duration(seconds: 3), curve: Curves.linear);
   }
-   late ScrollController _scrollController;
-
+   late ScrollController  _scrollController;
+  
   @override
   void initState() {
     _scrollController = ScrollController()
@@ -50,8 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
     Size size = Utils(context).getscreenSize;
 
     return Scaffold(
-
- appBar: AppBar(
+      appBar: AppBar(
         elevation:0,
         title: InkWell(
           borderRadius: BorderRadius.circular(10),
@@ -64,11 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
         
         backgroundColor: Colors.green,
         ),
-      
-
-     
         body: SingleChildScrollView(child: Column(children: [
-
       SizedBox(
           height: size.height * 0.30,
           child: Swiper(
@@ -88,12 +78,12 @@ class _HomeScreenState extends State<HomeScreen> {
                     color: Colors.white,
                     activeColor: Color.fromARGB(255, 12, 230, 19))),
           )),
-      const Text(
+       const Text(
         "Fruits",
-        style:  TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+        style:  TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
       ),
       SizedBox(
-        height: size.height * 0.18,
+        height: size.height * 0.20,
         child: ListView.builder(
           itemCount: 10,
           scrollDirection: Axis.horizontal,
@@ -104,10 +94,10 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       const Text(
         "Vegetables",
-        style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+        style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
       ),
       SizedBox(
-        height: size.height * 0.18,
+        height: size.height * 0.20,
         child: ListView.builder(
           itemCount: 10,
           scrollDirection: Axis.horizontal,
@@ -118,10 +108,10 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       const Text(
         "Groceries",
-        style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+        style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
       ),
       SizedBox(
-        height: size.height * 0.18,
+        height: size.height * 0.20,
         child: ListView.builder(
           itemCount: 10,
           scrollDirection: Axis.horizontal,
@@ -135,3 +125,4 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
+ 

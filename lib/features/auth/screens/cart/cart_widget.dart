@@ -18,21 +18,23 @@ class CartWidget extends StatefulWidget{
   State<CartWidget> createState() => _CartWidgetState();
 }
 class _CartWidgetState extends State<CartWidget>{
-  int count =0;
+  int cartcount =0;
   void incrementCount(){
     setState(() {
-      count++;
+      cartcount++;
+      _quantityTextController.text=cartcount.toString();
     });
   } 
   void decrementCount(){
     setState(() {
-      count--;
+      cartcount--;
+      _quantityTextController.text=cartcount.toString();
     });
   }
   final _quantityTextController = TextEditingController();
   @override
   void initState(){
-    _quantityTextController.text='1';
+    _quantityTextController.text=cartcount.toString();
     super.initState();
     
   
@@ -51,7 +53,7 @@ class _CartWidgetState extends State<CartWidget>{
         child: Row(children: [
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.all(3.0),
+              padding: const EdgeInsets.all(10.0),
               child: Container(
                 decoration: BoxDecoration(color:Theme.of(context).canvasColor.withOpacity(0.2),
                 borderRadius: BorderRadius.circular(12),),
@@ -63,69 +65,77 @@ class _CartWidgetState extends State<CartWidget>{
                               width: 90,
                               decoration:BoxDecoration(color:Theme.of(context).cardColor,
                     borderRadius: BorderRadius.circular(12),), 
-                      child: Image.network('https://media.istockphoto.com/photos/farm-market-in-the-fall-apples-picture-id1088157488',
-                        width: 200,
-                        height: 150,
-                        fit: BoxFit.fill,
-                      ),
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                      TextWidget(text: '  Text', color: Colors.black , 
-                      textSize: 20,
-                      isTitle: true,
-                      ),
-                      const SizedBox(height: 16 ,),
-                      SizedBox(
-                        width: 150,
-                        child: Row(
-                          children: [
-                            _quantityController(fct:() => {count--}, icon: CupertinoIcons.minus, color: Colors.red),
-                            Flexible(
-                              flex: 1,
-                              child: TextField(
-
-                                controller: _quantityTextController,
-                                keyboardType: TextInputType.number,
-                                maxLines: 1,
-                                decoration:  const InputDecoration(
-                                  focusedBorder: UnderlineInputBorder(borderSide: BorderSide())),
-                                    inputFormatters: [
-                                      FilteringTextInputFormatter.allow(
-                                        RegExp('[0-9]')
-                                      )
-                                    ],
-                                    onChanged: (v){
-                                      setState(() {
-                                        if(v.isEmpty){
-                                          _quantityTextController.text='1';
-                                        }
-                                        else{
-                                          return;
-                                        }
-                                        
-                                      });
-
-                                    },
-                              ),
-                            ),
-                            _quantityController(fct: () => {count++}, icon: CupertinoIcons.plus, color: Colors.green,),
-                           
-                          ],
-                          
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: Image.network('https://media.istockphoto.com/photos/farm-market-in-the-fall-apples-picture-id1088157488',
+                          width: 200,
+                          height: 150,
+                          fit: BoxFit.fill,
                         ),
                       ),
-                      
-                      
-                    ],),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                        TextWidget(text: '  Text', color: Colors.black , 
+                        textSize: 20,
+                        isTitle: true,
+                        ),
+                        const SizedBox(height: 16 ,),
+                        SizedBox(
+                          width: 150,
+                          child: Row(
+                            children: [
+                              _quantityController(fct:() => {decrementCount()}, icon: CupertinoIcons.minus, color: Colors.red),
+                              
+                              Flexible(
+                                flex: 1,
+                                child: TextField(
+
+                                  controller: _quantityTextController,
+                                  keyboardType: TextInputType.number,
+                                  maxLines: 1,
+                                  decoration:  const InputDecoration(
+                                    focusedBorder: UnderlineInputBorder(borderSide: BorderSide())),
+                                      inputFormatters: [
+                                        FilteringTextInputFormatter.allow(
+                                          RegExp('[0-9]')
+                                        )
+                                      ],
+                                      onChanged: (v){
+                                        setState(() {
+                                          if(v.isEmpty){
+                                            _quantityTextController.text=cartcount.toString();
+                                          }
+                                          else{
+                                            return;
+                                          }
+                                          
+                                        });
+
+                                      },
+                                ),
+                              ),
+                              _quantityController(fct: () => {incrementCount()}, icon: CupertinoIcons.plus, color: Colors.green,),
+                              
+                             
+                            ],
+                            
+                          ),
+                        ),
+                        
+                        
+                      ],),
+                    ),
                     const Spacer(),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 5),
                       child: Column(children: [
                         InkWell(
                           onTap: () {},
-                          child: const Icon(CupertinoIcons.cart_badge_minus,color:Colors.red,size:20)
+                          child: const Icon(CupertinoIcons.cart_badge_minus,color:Colors.red,size:20,)
                         ),
                         const SizedBox(height:5,),
                         

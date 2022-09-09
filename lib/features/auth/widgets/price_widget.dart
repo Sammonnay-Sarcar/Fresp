@@ -14,7 +14,7 @@ class PriceWidget extends StatelessWidget{
             text:'Rs.100', 
             color: Colors.red, 
             isTitle: true,
-            textSize: 12
+            textSize: 18
             ),
             
             ],
