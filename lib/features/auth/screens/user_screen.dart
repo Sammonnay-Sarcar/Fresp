@@ -3,11 +3,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fresp/constants/global_variables.dart';
+import 'package:fresp/features/auth/services/auth_service.dart';
 
 enum UserOptions { my_orders, delivery_address, logout }
 
 class UserScreen extends StatelessWidget {
   const UserScreen({Key? key}) : super(key: key);
+
+  void logOutUser(BuildContext context) {
+    AuthService authService = AuthService();
+    authService.logOutUser(context);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -156,6 +162,20 @@ class UserScreen extends StatelessWidget {
               child: const Center(
                 child: Text(
                   "Payment Details",
+                  style: TextStyle(color: Color.fromARGB(98, 0, 0, 0)),
+                ),
+              )),
+          OutlinedButton(
+              style: OutlinedButton.styleFrom(
+                  elevation: 0,
+                  primary: Colors.white,
+                  minimumSize: const Size(double.infinity, 70)),
+              onPressed: () {
+                logOutUser(context);
+              },
+              child: const Center(
+                child: Text(
+                  "Sign out",
                   style: TextStyle(color: Color.fromARGB(98, 0, 0, 0)),
                 ),
               ))

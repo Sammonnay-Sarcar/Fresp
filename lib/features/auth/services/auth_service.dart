@@ -96,9 +96,19 @@ class AuthService {
               'x-auth-token': token
             });
         var userProvider = Provider.of<UserProvider>(context, listen: false);
-
         userProvider.setUser(userRes.body);
       }
+    } catch (e) {
+      showSnackBar(context, e.toString());
+    }
+  }
+
+  //log-out USER
+  void logOutUser(BuildContext context) async {
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      await prefs.setString('x-auth-token', '');
+      showSnackBar(context, "logged out succesfully");
     } catch (e) {
       showSnackBar(context, e.toString());
     }

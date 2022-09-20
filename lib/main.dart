@@ -7,8 +7,6 @@ import 'package:fresp/features/auth/screens/auth_screen.dart';
 import 'package:fresp/features/auth/screens/testscreen.dart';
 import 'package:fresp/features/auth/services/auth_service.dart';
 
-//import 'package:fresp/features/auth/screens/homescreen.dart';
-
 import 'package:fresp/providers/user_provider.dart';
 
 import 'package:fresp/router.dart';
@@ -16,11 +14,6 @@ import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // final AuthScreen _auth = AuthScreen();
-  //final bool isLogged = await AuthScreen.isLogged();
-  //final MyApp myApp = MyApp(
-  //initialRoute: isLogged ? '/home' : '/',
-  //);
 
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(
@@ -44,7 +37,6 @@ class _MyAppState extends State<MyApp> {
   final AuthService authService = AuthService();
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     authService.getUserData(context);
   }
@@ -65,10 +57,8 @@ class _MyAppState extends State<MyApp> {
               )),
         ),
         onGenerateRoute: (settings) => generateRoute(settings),
-
         home: Provider.of<UserProvider>(context).user.token.isNotEmpty
             ? const BottomBarScreen()
             : const AuthScreen());
-
   }
 }

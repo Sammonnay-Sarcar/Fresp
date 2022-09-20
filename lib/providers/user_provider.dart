@@ -11,7 +11,6 @@ class UserProvider with ChangeNotifier {
   void setUser(String user) {
     // print(user);
     _user = LoginCredentials.fromJson(user);
-    print(_user);
     notifyListeners();
   }
 }
