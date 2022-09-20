@@ -6,34 +6,30 @@ import 'package:fresp/features/auth/screens/cart/cart_screen.dart';
 import 'package:fresp/features/auth/widgets/text_widget.dart';
 import 'package:fresp/features/auth/screens/cart/product_details.dart';
 
-class SaleWidget extends StatefulWidget{
+class SaleWidget extends StatefulWidget {
   const SaleWidget({Key? key}) : super(key: key);
 
-  @override 
+  @override
   State<SaleWidget> createState() => _SaleWidgetState();
 }
-class _SaleWidgetState extends State<SaleWidget>{
 
-    void navigateToCart(){
-    Navigator.pushNamed(context,
-     CartScreen.routeName,
-     arguments: CartScreen );
+class _SaleWidgetState extends State<SaleWidget> {
+  void navigateToCart() {
+    Navigator.pushNamed(context, CartScreen.routeName, arguments: CartScreen);
+  }
 
-    }
-    void navigateToProduct(){
-      Navigator.pushNamed(context,
-     ProductDetails.routename,
-     arguments: ProductDetails );
+  void navigateToProduct() {
+    Navigator.pushNamed(context, ProductDetails.routename,
+        arguments: ProductDetails);
+  }
 
-    }
-
-
-     @override 
-    Widget build(BuildContext context) {
+  @override
+  Widget build(BuildContext context) {
     final Color color = Utils(context).color;
     Size size = Utils(context).getscreenSize;
 
     return GestureDetector(
+
         onTap: (){
           
         },
@@ -118,11 +114,7 @@ class _SaleWidgetState extends State<SaleWidget>{
           )
               ),
         ),
+
     );
-    
-
-
-          
-          
   }
 }
