@@ -2,10 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:fresp/constants/global_variables.dart';
-import 'package:fresp/features/auth/screens/bottom_bar.dart';
 import 'package:fresp/features/auth/screens/auth_screen.dart';
-import 'package:fresp/features/auth/screens/testscreen.dart';
 import 'package:fresp/features/auth/services/auth_service.dart';
+import 'package:fresp/features/bottombar/screen/bottom_bar.dart';
 
 import 'package:fresp/providers/user_provider.dart';
 

@@ -5,13 +5,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:fresp/constants/error_handling.dart';
 import 'package:fresp/constants/global_variables.dart';
 import 'package:fresp/constants/utils.dart';
-import 'package:fresp/features/auth/screens/bottom_bar.dart';
-import 'package:fresp/features/auth/screens/testscreen.dart';
 import 'package:fresp/models/user.dart';
 import 'package:fresp/providers/user_provider.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../bottombar/screen/bottom_bar.dart';
 
 class AuthService {
   //signUp user

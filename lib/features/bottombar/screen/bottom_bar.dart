@@ -1,16 +1,14 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
-import 'package:fresp/features/auth/screens/homescreen.dart';
-
-import 'package:fresp/features/auth/screens/categories_screen.dart';
-
-import 'package:fresp/features/auth/screens/user_screen.dart';
-import 'package:fresp/features/auth/screens/cart/cart_screen.dart';
+import 'package:fresp/features/cart/screen/cart_screen.dart';
+import 'package:fresp/features/categories/screen/categories_screen.dart';
+import 'package:fresp/features/user/screen/user_screen.dart';
 import 'package:fresp/models/user.dart';
 import 'package:provider/provider.dart';
 
 import '../../../providers/user_provider.dart';
+import '../../homescreen/screens/homescreen.dart';
 
 class BottomBarScreen extends StatefulWidget {
   static const String routeName = '/home';
@@ -48,16 +46,12 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(IconlyLight.home),
-
             label: "Home",
           ),
           BottomNavigationBarItem(
             icon: Icon(IconlyLight.category),
             label: "Categories",
           ),
-
-
-
           BottomNavigationBarItem(
             icon: Icon(IconlyLight.buy),
             label: "Cart",

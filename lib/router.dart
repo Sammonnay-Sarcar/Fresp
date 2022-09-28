@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:fresp/features/address/screen/address_screen.dart';
 import 'package:fresp/features/auth/screens/auth_screen.dart';
-import 'package:fresp/features/auth/screens/bottom_bar.dart';
-import 'package:fresp/features/auth/screens/cart/empty_screen.dart';
-import 'package:fresp/features/auth/screens/testscreen.dart';
-import 'package:fresp/features/auth/screens/user_screen.dart';
-import 'package:fresp/features/auth/screens/address/address_screen.dart';
-import 'package:fresp/features/auth/screens/cart/cart_screen.dart';
-
-import 'package:fresp/features/auth/screens/cart/product_details.dart';
+import 'package:fresp/features/bottombar/screen/bottom_bar.dart';
+import 'package:fresp/features/cart/screen/cart_screen.dart';
+import 'package:fresp/features/cart/screen/empty_screen.dart';
+import 'package:fresp/features/product/screen/product_details.dart';
+import 'package:fresp/features/testscreen.dart';
 
 Route<dynamic> generateRoute(RouteSettings routeSettings) {
   switch (routeSettings.name) {
