@@ -1,20 +1,22 @@
 import 'dart:convert';
-import 'dart:ffi';
 
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-class User {
+class LoginModel {
   final String id;
   final String name;
   final String number;
-
+  final String token;
   final String email;
+  final String password;
   final List<dynamic> address;
   final List<dynamic> orderHistory;
-  User({
+  LoginModel({
     required this.id,
     required this.name,
     required this.number,
+    required this.token,
     required this.email,
+    required this.password,
     required this.address,
     required this.orderHistory,
   });
@@ -24,26 +26,29 @@ class User {
       'id': id,
       'name': name,
       'number': number,
+      'token': token,
       'email': email,
+      'password': password,
       'address': address,
       'orderHistory': orderHistory,
     };
   }
 
-  factory User.fromMap(Map<String, dynamic> map) {
-    return User(
-      id: map['_id'] as String,
+  factory LoginModel.fromMap(Map<String, dynamic> map) {
+    return LoginModel(
+      id: map['id'] as String,
       name: map['name'] as String,
-      number: map['phone'] as String,
+      number: map['number'] as String,
+      token: map['token'] as String,
       email: map['email'] as String,
-      address: List<Map<String, dynamic>>.from(
-          map['address']?.map((x) => Map<String, dynamic>.from(x))),
+      password: map['password'] as String,
+      address: List<dynamic>.from((map['address'] as List<dynamic>)),
       orderHistory: List<dynamic>.from((map['orderHistory'] as List<dynamic>)),
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory User.fromJson(String source) =>
-      User.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory LoginModel.fromJson(String source) =>
+      LoginModel.fromMap(json.decode(source) as Map<String, dynamic>);
 }

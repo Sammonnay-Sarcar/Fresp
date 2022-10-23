@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:fresp/common/widgets/text_widget.dart';
 import 'package:fresp/common/widgets/utils.dart';
 import 'package:fresp/features/address/screen/address_screen.dart';
 import 'package:fresp/features/cart/screen/empty_screen.dart';
 import 'package:fresp/features/cart/widgets/cart_widget.dart';
+
+import '../../../constants/global_variables.dart';
 
 class CartScreen extends StatefulWidget {
   static const String routeName = '/cart';
@@ -30,25 +33,27 @@ class _CartScreenState extends State<CartScreen> {
     final Color color = Utils(context).color;
 
     return Scaffold(
-      appBar: AppBar(
-          elevation: 0,
-          backgroundColor: Colors.green,
-          title: TextWidget(
-            text: 'Cart(2)',
-            color: Color.fromARGB(255, 255, 255, 255),
-            textSize: 22,
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(50),
+        child: AppBar(
+          flexibleSpace: Container(
+            decoration: BoxDecoration(gradient: GlobalVariables.appBarGradient),
           ),
-          actions: [
-            IconButton(
-              onPressed: () {
-                navigateToEmptyScreen();
-              },
-              icon: const Icon(
-                IconlyBroken.delete,
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Container(
+                alignment: Alignment.topLeft,
+                child: Image.asset('assets/images/amazon_in.png',
+                    width: 120, height: 45, color: Colors.black),
               ),
-              color: Colors.white,
-            ),
-          ]),
+              Container(
+                  padding: const EdgeInsets.only(left: 15, right: 15),
+                  child: Icon(FeatherIcons.user)),
+            ],
+          ),
+        ),
+      ),
       body: Column(
         children: [
           _checkout(ctx: context),

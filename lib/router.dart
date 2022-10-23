@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fresp/features/address/screen/address_screen.dart';
 import 'package:fresp/features/auth/screens/auth_screen.dart';
-import 'package:fresp/features/bottombar/screen/bottom_bar.dart';
+import 'package:fresp/common/widgets/bottom_bar.dart';
 import 'package:fresp/features/cart/screen/cart_screen.dart';
 import 'package:fresp/features/cart/screen/empty_screen.dart';
 import 'package:fresp/features/product/screen/product_details.dart';

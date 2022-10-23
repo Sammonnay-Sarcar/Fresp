@@ -5,13 +5,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:fresp/constants/error_handling.dart';
 import 'package:fresp/constants/global_variables.dart';
 import 'package:fresp/constants/utils.dart';
+import 'package:fresp/models/loginModel.dart';
 import 'package:fresp/models/user.dart';
 import 'package:fresp/providers/user_provider.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../bottombar/screen/bottom_bar.dart';
+import '../../../common/widgets/bottom_bar.dart';
+import '../../../providers/user_detail_provider.dart';
 
 class AuthService {
   //signUp user
@@ -22,14 +24,16 @@ class AuthService {
       required String name,
       required String number}) async {
     try {
-      User user = User(
+      LoginModel user = LoginModel(
           id: '',
-          email: email,
           name: name,
-          password: password,
           number: number,
-          token: '');
-      http.Response res = await http.post(Uri.parse('$uri/api/v1/user'),
+          token: '',
+          email: email,
+          password: password,
+          address: [],
+          orderHistory: []);
+      http.Response res = await http.post(Uri.parse('$uri/api/v1/user/'),
           body: user.toJson(),
           headers: <String, String>{
             'Content-type': 'application/json; charset=utf-8'
@@ -62,6 +66,7 @@ class AuthService {
         context: context,
         onSuccess: () async {
           SharedPreferences prefs = await SharedPreferences.getInstance();
+          print(res.body);
           Provider.of<UserProvider>(context, listen: false).setUser(res.body);
           await prefs.setString('x-auth-token', jsonDecode(res.body)['token']);
 
@@ -82,12 +87,14 @@ class AuthService {
       if (token == null) {
         prefs.setString('x-auth-token', '');
       }
+
       var tokenRes = await http.post(Uri.parse('$uri/api/v1/user/tokenIsValid'),
           headers: <String, String>{
             'Content-type': 'application/json; charset=utf-8',
             'x-auth-token': token!
           });
       var response = jsonDecode(tokenRes.body);
+
       if (response == true) {
         //getUserData
         http.Response userRes = await http.get(Uri.parse('$uri/api/v1/user/'),
@@ -95,8 +102,20 @@ class AuthService {
               'Content-type': 'application/json; charset=utf-8',
               'x-auth-token': token
             });
+
+        var userDetailProvider =
+            Provider.of<UserDetailProvider>(context, listen: false);
+        userDetailProvider.setUser(userRes.body);
+        print(userRes.body);
+        http.Response userLoginRes = await http.get(
+            Uri.parse('$uri/api/v1/user/getUser'),
+            headers: <String, String>{
+              'Content-type': 'application/json; charset=utf-8',
+              'x-auth-token': token
+            });
+        print(userLoginRes.body);
         var userProvider = Provider.of<UserProvider>(context, listen: false);
-        userProvider.setUser(userRes.body);
+        userProvider.setUser(userLoginRes.body);
       }
     } catch (e) {
       showSnackBar(context, e.toString());

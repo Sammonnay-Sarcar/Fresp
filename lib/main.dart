@@ -2,12 +2,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:fresp/constants/global_variables.dart';
+import 'package:fresp/features/admin/screens/admin_screen.dart';
 import 'package:fresp/features/auth/screens/auth_screen.dart';
 import 'package:fresp/features/auth/services/auth_service.dart';
-import 'package:fresp/features/bottombar/screen/bottom_bar.dart';
-
+import 'package:fresp/common/widgets/bottom_bar.dart';
+import 'package:fresp/providers/user_detail_provider.dart';
 import 'package:fresp/providers/user_provider.dart';
-
 import 'package:fresp/router.dart';
 import 'package:provider/provider.dart';
 
@@ -17,7 +17,10 @@ void main() async {
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(
       create: (context) => UserProvider(),
-    )
+    ),
+    ChangeNotifierProvider(
+      create: (context) => UserDetailProvider(),
+    ),
   ], child: const MyApp()));
 }
 
@@ -43,6 +46,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Fresp',
         theme: ThemeData(
           scaffoldBackgroundColor: GlobalVariables.backgroundColor,
@@ -57,7 +61,9 @@ class _MyAppState extends State<MyApp> {
         ),
         onGenerateRoute: (settings) => generateRoute(settings),
         home: Provider.of<UserProvider>(context).user.token.isNotEmpty
-            ? const BottomBarScreen()
+            ? Provider.of<UserProvider>(context).user.isAdmin == false
+                ? const BottomBarScreen()
+                : AdminScreen()
             : const AuthScreen());
   }
 }

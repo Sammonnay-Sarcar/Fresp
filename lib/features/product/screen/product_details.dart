@@ -1,7 +1,9 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:fresp/common/widgets/text_widget.dart';
 import 'package:fresp/common/widgets/utils.dart';
+import 'package:fresp/constants/global_variables.dart';
 
 class ProductDetails extends StatefulWidget {
   static const String routename = '/product-details';
@@ -22,18 +24,29 @@ class _ProductDetailState extends State<ProductDetails> {
 
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(60),
+        preferredSize: const Size.fromHeight(50),
         child: AppBar(
-          flexibleSpace: Container(
-            decoration: const BoxDecoration(
-              color: Colors.green,
-            ),
+          leading: IconButton(
+            onPressed: Navigator.of(context).pop,
+            icon: Icon(FeatherIcons.arrowLeft),
           ),
-          title: TextWidget(
-            text: 'Product information',
-            color: color,
-            isTitle: true,
-            textSize: 22,
+          flexibleSpace: Container(
+            decoration: BoxDecoration(gradient: GlobalVariables.appBarGradient),
+          ),
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Container(
+                alignment: Alignment.topLeft,
+                child: Image.asset('assets/images/amazon_in.png',
+                    width: 120, height: 45, color: Colors.black),
+              ),
+              Container(
+                  padding: const EdgeInsets.only(left: 15, right: 15),
+                  child: Icon(FeatherIcons.user) //TODO: change icon
+
+                  ),
+            ],
           ),
         ),
       ),
