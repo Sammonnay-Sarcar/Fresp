@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
+import 'package:fresp/constants/global_variables.dart';
 
-import '../../../constants/global_variables.dart';
+class AdminScreen extends StatefulWidget {
+  const AdminScreen({super.key});
 
-class CategoriesScreen extends StatelessWidget {
-  const CategoriesScreen({Key? key}) : super(key: key);
+  @override
+  State<AdminScreen> createState() => _AdminScreenState();
+}
 
+class _AdminScreenState extends State<AdminScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(50),
+        preferredSize: const Size.fromHeight(50),
         child: AppBar(
           flexibleSpace: Container(
             decoration: BoxDecoration(gradient: GlobalVariables.appBarGradient),
@@ -32,7 +36,6 @@ class CategoriesScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: Center(child: Text('Categories screen')),
     );
   }
 }

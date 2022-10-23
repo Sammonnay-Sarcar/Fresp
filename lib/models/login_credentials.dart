@@ -4,15 +4,18 @@ import 'dart:convert';
 class LoginCredentials {
   final String email;
   final String token;
+  final bool isAdmin;
   LoginCredentials({
     required this.email,
     required this.token,
+    required this.isAdmin,
   });
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'email': email,
       'token': token,
+      'isAdmin': isAdmin,
     };
   }
 
@@ -20,6 +23,7 @@ class LoginCredentials {
     return LoginCredentials(
       email: map['email'] as String,
       token: map['token'] as String,
+      isAdmin: map['isAdmin'] as bool,
     );
   }
 

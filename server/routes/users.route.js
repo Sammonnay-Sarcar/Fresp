@@ -29,22 +29,36 @@ router.post('/', async(req, res)=>{
     return res.status(400).send('the user cannot be posted!')
     res.send(user);
 })
+router.get('/getUser', auth , async(req,res)=>{
+    try{
+        
+        const userLoginDetail = await loginCredential.findById(req.user);
+        const user = await User.findOne({'email': userLoginDetail.email});
+        console.log(userLoginDetail);
+        const userObj ={
+            email: user.email,
+            token: req.token,
+            isAdmin: userLoginDetail.isAdmin
+        }
+        console.log(userObj);
+        res.json(userObj);
+    }catch(e){
+        res.status(500).json({error : e.message});
+    }
+   }
+)
 router.get('/', auth , async(req,res)=>{
     try{
         
         const userLoginDetail = await loginCredential.findById(req.user);
         const user = await User.findOne({'email': userLoginDetail.email});
-        const userObj ={
-            email: user.email,
-            token: req.token
-        }
-        res.json(userObj);
+        
+        res.json(user);
     }catch(e){
         res.status(500).json({error : e.message});
     }
-   
-
-})
+   }
+)
 router.put('/:id', async(req, res)=>{
     let user = User.findByIdAndUpdate(
         req.params.id,
@@ -61,11 +75,11 @@ router.put('/:id', async(req, res)=>{
         res.send(user);
 })
 router.post('/login', async (req,res) => {
-   
+ 
     const user = await loginCredential.findOne({email: req.body.email})
     
     const secret = process.env.SECRET;
-    if(!user) {
+    if(!user) { 
         return res.status(400).send('The user not found');
     }
 
@@ -80,7 +94,7 @@ router.post('/login', async (req,res) => {
             {expiresIn : '1d'}
         )
        
-        res.status(200).send({email: user.email , token: token}) 
+        res.status(200).send({email: user.email , token: token, isAdmin:user.isAdmin}) 
     } else {
        res.status(400).send('password is wrong!');
     }
@@ -89,17 +103,19 @@ router.post('/tokenIsValid', async (req,res) => {
     
     try{
         const token = req.header('x-auth-token');
+       
         if(!token)
             return res.json(false);
         const isVerified = jwt.verify(token, process.env.SECRET );
         if(!isVerified)
             return res.json(false);
         const user = await loginCredential.findById(isVerified.userId);
+      
         if(!user)
             return res.json(false)
         res.json(true);            
     }catch(e){
-        res.status(500).json({error : e.message});
+        res.status(500).json({error : e.message}); 
     }
 })
 router.post("/address", async(req, res)=>{
