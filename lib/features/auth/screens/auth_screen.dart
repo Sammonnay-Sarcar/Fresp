@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:fresp/common/widgets/custom_button.dart';
-import 'package:fresp/common/widgets/custom_textField.dart';
+import 'package:fresp/common/widgets/custom_text_Field.dart';
 import 'package:fresp/constants/global_variables.dart';
+import 'package:fresp/features/auth/services/auth_service.dart';
 
 enum Auth { signin, signup }
 
@@ -21,18 +22,38 @@ class _AuthScreenState extends State<AuthScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _phoneNumberController = TextEditingController();
 
+  final AuthService authService = AuthService();
   @override
   void dispose() {
     super.dispose();
-    _emailController.dispose();
-    _passwordController.dispose();
-    _passwordController.dispose();
+  }
+
+  void signUpUser() {
+    authService.signUpUser(
+        context: context,
+        email: _emailController.text,
+        password: _passwordController.text,
+        name: _nameController.text,
+        number: _phoneNumberController.text);
+  }
+
+  void signInUser() {
+    authService.signInUser(
+      context: context,
+      email: _emailController.text,
+      password: _passwordController.text,
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+          title: const Center(child: Text('Fresp')),
+          backgroundColor: GlobalVariables.selectedNavBarColor,
+        ),
         backgroundColor: GlobalVariables.greyBackgroundCOlor,
         body: SafeArea(
             child: Padding(
@@ -40,8 +61,6 @@ class _AuthScreenState extends State<AuthScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text('Welcome',
-                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500)),
               ListTile(
                 tileColor: _auth == Auth.signup
                     ? GlobalVariables.backgroundColor
@@ -79,6 +98,11 @@ class _AuthScreenState extends State<AuthScreen> {
                       ),
                       const SizedBox(height: 10),
                       CustomTextField(
+                        controller: _phoneNumberController,
+                        hintText: 'Phone Number',
+                      ),
+                      const SizedBox(height: 10),
+                      CustomTextField(
                         controller: _passwordController,
                         hintText: 'Password',
                       ),
@@ -91,7 +115,10 @@ class _AuthScreenState extends State<AuthScreen> {
                       CustomButton(
                           text: 'Sign Up',
                           backgroundColour: GlobalVariables.secondaryColor,
-                          onTap: () => {})
+                          onTap: () => {
+                                if (_signupFormKey.currentState!.validate())
+                                  signUpUser()
+                              })
                     ]),
                   ),
                 ),
@@ -139,7 +166,10 @@ class _AuthScreenState extends State<AuthScreen> {
                       CustomButton(
                           text: 'Sign in',
                           backgroundColour: GlobalVariables.secondaryColor,
-                          onTap: () => {})
+                          onTap: () => {
+                                if (_signinFormKey.currentState!.validate())
+                                  signInUser()
+                              })
                     ]),
                   ),
                 ),
